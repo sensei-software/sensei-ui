@@ -1,0 +1,201 @@
+html,body{
+	font-family: arial;
+	height:100% !important;
+	font-size: 0.9em;
+	background-color:#fff;
+	margin:0;
+}
+
+h1 {
+	padding-top:0;
+}
+h2 {
+	padding-top:0;
+}
+input{
+	border: none;
+	border-radius: 5px;
+}
+a{
+	text-decoration: none;
+	outline: 0;
+	color: red;
+}
+textarea{
+	width: 96% !important;
+	height: 100%;
+
+}
+
+.hidden{
+	display: none;
+}
+
+
+#container{
+	background:#FFF;
+	height: 100%;
+	margin-right: 1em;
+}
+
+#logo{
+	height: auto;
+	width: 85%;
+	float: left;
+	margin: 5%;
+}.logo{
+	float: left;
+}/*h1.logo{
+	display: none;
+}#logoCont{
+	height: auto;
+	width: auto;
+	float: left;
+}#logoCont p{
+	margin-left: 4em;
+}#logoCont i {
+	margin: 10px;
+}#subtitle{
+	margin-top: -1.9em;
+	font-size: 0.96em;
+	margin-left: 6em;
+	width: 100%;
+	display: none;
+}#version{
+	margin-top: -1.5em;
+	font-size: 0.7em;
+	float: left;
+	width: 100%;
+	display: none;
+}*/
+
+#menu{
+	background: white;
+	position: absolute;
+	float: left;
+	width: 20%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	font-size: 1em;
+	overflow: auto;
+	margin: 0;
+	border: none !important;
+}#menu h1{
+	margin: 0px;
+}#menu h3{
+	border: none;
+	background: #6a9abf;
+	color: #fff;
+	font-weight: bolder;
+	border-radius: 5px;
+	margin-bottom: 3%;
+}#menu h3:hover{
+		background: rgba(106, 154, 191, 0.6); /* #6a9abf transparency */
+}.ui-icon-triangle-1-e{
+	display: none;
+}.accIcon{
+	background-image: url("../im/hammer.png") !important;
+  height: 16px;
+  width: 16px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+}#menu ul{
+	position: relative;
+	display: block;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 2em;
+	border: none !important;
+}#menu li{
+	position: relative;
+	display: block;
+	border: 1px solid white !important;
+	background: #fff;
+	margin: 0 auto;
+	color: #000;
+	margin-left: -28px;
+}#menu li:hover{
+	background: #fff;
+	border-bottom: 1px solid #ddd !important;
+	color: #000;
+}#menu a{
+	color: #555 !important;
+}#menu a:hover {
+	color: #000 !important;
+}#menu li a{
+	position: relative;
+	display: list-item;
+	min-height: 0px;
+	color: #555 !important;
+	padding: 0.5em;
+	padding-left: 3.5em;
+	font-size: 0.9em;
+	margin-left: 0.5em;
+	list-style-type: cjk-ideographic;
+	list-style-position: inside;
+	list-style-type:
+	background-image: url("../im/accMenu.png");
+	background-position: 2em 0.5em !important;
+	background-size: 1.2em !important;
+	background-repeat: no-repeat !important;
+}
+#accordion{
+	float: left;
+	width: 85%;
+	margin: 0% 5%;
+}.ui-accordion .ui-accordion-content {
+	padding: 0px !important;
+	padding-left: 15px !important;
+	border: none;
+}.ui-accordion .ui-accordion-content {
+	padding: 0em !important;
+}
+
+#winOut{
+	position: absolute;
+	float: left;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 20%;
+	margin: 0;
+	padding: 0;
+}
+
+#commandBoard {
+	font-size: 0.8em;
+}#commandBoard td{
+	vertical-align: top;
+}
+
+.frameGraph{
+	float: left;
+	position: relative;
+	height: 48%;
+	width: 50%;
+	margin: 0% 0%;
+	display: inline-block;
+	left: 0 !important;
+	top: 0 !important;
+}
+
+iframe[name=frameGraph]{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+iframe[name="frameOut"]{
+	height: 100% !important;
+}
+
+iframe[name="out"]{
+float: right;
+height: 70% !important;
+width: 65% !important;
+padding: 1%;
+position: absolute;
+top: 20%;
+right: 0;
+}

@@ -1,0 +1,46 @@
+		table.highchart{
+			display:none;
+			height:250px;
+		}
+		body, html{
+			font-family: verdana;
+			width: 100%;
+			height: 94%;
+			padding:0px;
+			margin:0px;
+			margin-top:-20px;
+			padding-top:20px;
+
+			font-size: 0.9em;
+			margin-left: -4px;
+			margin-right: -4px;
+
+		}
+		table td{
+			border: 1px solid gray;
+			padding: 3px;
+		}
+		h3 {
+			margin-top:1px;
+			margin-bottom:2px;
+			font-size: 1em;
+		}
+		.highcharts-legend{
+			transform: translate(74px,-6px);
+			-ms-transform: translate(74px,-6px); /* IE 9 */
+			-webkit-transform: translate(74px,-6px); /* Safari and Chrome */
+			-o-transform: translate(74px,-6px); /* Opera */
+			-moz-transform: translate(74px,-6px); /* Firefox */
+		}
+		.highcharts-container{
+			margin-bottom:-50px;
+			height: 250px !important;
+		}
+		.highcharts-subtitle{
+			display: none;
+			transform: translate(174px,0px);
+			-ms-transform: translate(174px,0px); /* IE 9 */
+			-webkit-transform: translate(74px,0px); /* Safari and Chrome */
+			-o-transform: translate(174px,0px); /* Opera */
+			-moz-transform: translate(174px,0px); /* Firefox */
+		}

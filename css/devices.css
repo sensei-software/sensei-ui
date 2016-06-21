@@ -1,0 +1,90 @@
+#devOut{
+	right: 2%;
+	top: 2%;
+	width: 68% !important;
+	height: 90% !important;
+	background: #DDD;
+  border: 8px solid #bbb;
+	position: absolute;
+	float: right;
+}#devOut.loading{
+  border: 8px solid #BCE;
+	background-color: #CCC;
+}
+
+#devices{
+	position: relative;
+	height: 100%;
+	width: 20%;
+	margin-top: 2%;
+}
+.device{
+	position: relative;
+  background: rgba(106, 154, 191, 0.6); /* #6a9abf transparency */
+	color: #fff;
+  width: 105%;
+	margin-left: 5%;
+	margin-bottom: 5%;
+  padding: 5%;
+	border-radius: 10px;
+	position: relative;
+	background-image: url("../im/hammer.png");
+  background-size: 20% auto;
+  background-repeat: no-repeat;
+  background-position: right 3% top 5%;
+	overflow: hidden;
+}.device:hover {
+	cursor: pointer;
+	background-image: url("../im/hammer.png") !important;
+  background-size: 60% auto !important;
+  background-repeat: no-repeat !important;
+  background-position: right 3% top 5% !important;
+}.device.active {
+  background: #6a9abf;
+	background-image: url("../im/hammer.png");
+  background-size: 32% auto;
+  background-repeat: no-repeat;
+  background-position: right 3% top 5%;
+}.device .port{
+	font-size: 1em;
+	color: #fff;
+	margin: 0;
+	margin-bottom: 2%;
+}.device .model{
+		font-size: 1em;
+		color: #fff;
+		margin-bottom: 5%;
+}.device .name{
+		width: 100% !important;
+		height: 20px;
+		padding-bottom: 5px;
+}.device .name a{
+	font-size: 1.3em;
+	color: #fff;
+}.device .name a:hover{
+	color: #444;
+}.device select{
+	height: 22px;
+	width: 100px;
+	font-size: 1em;
+	margin-top: 2px;
+}.device input[type="text"]{
+	height: 22px;
+	width: 87px;
+	font-size: 1em;
+	margin: 2px 0px 30px 2px;
+	padding: 0 5px;
+	color: #555;
+}.device input[type="button"]{
+	position: absolute;
+	float: right;
+	right: 3%;
+	bottom: 4%;
+	font-size: 0.7em;
+	padding: 0.2em;
+	border: 3px solid #FFF;
+	border-radius: 23%;
+	color: #666;
+}.device input[type="button"]:hover{
+	background:#FFF;
+}

@@ -1,0 +1,59 @@
+html, body{
+	height: 98%;
+	width: 99%;
+	padding-top:40px;
+}
+li{
+	font-size: 1.3em;
+	line-height: 2em;
+	list-style-type: cjk-ideographic;
+	width: 100px;
+
+}
+li.loading{
+	background-color: #CCC !important;
+}
+li.updating{
+	background-color: #EEE !important;
+}
+.rel_status_on{
+	padding: 4px;
+	border-radius: 4px;
+	margin: 20px 8px;
+	cursor:default;
+	background-color: #5A5;
+}
+.rel_status_on:hover{
+	background-color: #050;
+}
+.rel_status_on a{
+	color:green;
+	background-color: lightgreen;
+	padding:2px;
+	border-radius:3px;
+	margin-left: 4px;
+}
+.rel_status_on a:hover{
+	color:white;
+}
+.rel_status_off{
+	color:white;
+	padding: 4px;
+	border-radius: 4px;
+	margin: 20px 8px;
+	cursor:default;
+	background-color: #E55;	
+}
+.rel_status_off:hover{
+	background-color: #900;
+}
+.rel_status_off a{
+	color:red;
+	background-color: #F99;
+	padding:2px;
+	border-radius:3px;
+	margin-right: 4px;
+}
+.rel_status_off a:hover{
+
+}

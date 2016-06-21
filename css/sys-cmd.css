@@ -1,0 +1,95 @@
+html, body{
+	height: 98%;
+	width: 99%;
+}
+
+form{
+	background: #6a9abf;
+	color: #fff;
+	padding: 5px;
+	border-radius: 5px;
+}
+form label{
+	margin-left:0.5em;
+	margin-right: 4px;
+	font-weight: bold;
+}
+
+#sysContainer{
+	position: relative;
+	height: 99%;
+	width: 99%;
+}
+
+#sysTop{
+}
+
+#sysCenter{
+	height: 85%;
+	margin: 0 auto;
+}
+#contOutput{
+	height: 100%;
+}
+#output{
+	height: 100%;
+}
+#textOutput{
+	background: #ddd;
+	height: 85%;
+	width: 94% !important;
+	border: 8px solid #CCC;
+	padding: 2%;
+  word-wrap: normal;
+  overflow-x: scroll;
+  white-space: pre;
+
+}
+
+#textOutput.loading{
+	border: 8px solid #BCE;
+}
+
+.error{
+	border: 4px solid #f00;
+}
+
+.disabled{
+	background: #ccc;
+}
+
+#cmdForm{
+	position: relative;
+}
+label[for=cmdName]{
+}#cmdName{
+}
+#cmdText{
+	width: 98.5%;
+	margin: 1px;
+	margin-bottom: 25px;
+	padding: 2px 5px;
+}
+label[for=cmdPath]{
+	position: absolute;
+	bottom: 7px;
+}#cmdPath{
+	position: absolute;
+	bottom: 7px;
+	left: 50px;
+}
+label[for=cmdInterval]{
+	position: absolute;
+	right: 180px;
+	bottom: 7px;
+}#cmdInterval{
+	width: 100px;
+	position: absolute;
+	bottom: 5px;
+	right: 80px;
+}
+#cmdBtn{
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
