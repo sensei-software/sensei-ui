@@ -24,7 +24,7 @@ function updateValues(){
     }
   });
   $.ajax({
-    url: '/api/srv-value.php?sid=Sensors&sensor=DHT11&measure=humidity',
+    url: '/api/srv-value.php?sid=Sensors&sensor=DHT11&measure=humidity&samples=5',
     success: function(data){
       val=data;
       $("#humidity .value span").text(val);
@@ -33,7 +33,7 @@ function updateValues(){
     }
   });
   $.ajax({
-    url: '/api/srv-value.php?sid=Sensors&sensor=DHT11&measure=temperature',
+    url: '/api/srv-value.php?sid=Sensors&sensor=DHT11&measure=temperature&samples=10',
     success: function(data){
       val=data;
       $("#temperature .value span").text(val);
@@ -149,7 +149,7 @@ function updateValues(){
     }
   });
 
-  window.setTimeout(updateValues,1000);
+  window.setTimeout(updateValues,2000);
 }
 
 
@@ -158,76 +158,164 @@ function updateValues(){
 function initButtons(){
 
   $("#R1").on("click", function(){
+    $(this).addClass("loading");
     on= $("#R1 .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 1")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 1",
+        success: function(){
+          $("#R1").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 1")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 1",
+        success: function(){
+          $("#R1").removeClass("loading");
+        }
+      })
     }
   });
 
   $("#R2").on("click", function(){
+    $(this).addClass("loading");
     on= $("#R2 .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 2")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 2",
+        success: function(){
+          $("#R2").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 2")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 2",
+        success: function(){
+          $("#R2").removeClass("loading");
+        }
+      })
     }
   });
 
   $("#R3").on("click", function(){
+    $(this).addClass("loading");
     on= $("#R3 .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 3")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 3",
+        success: function(){
+          $("#R3").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 3")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 3",
+        success: function(){
+          $("#R3").removeClass("loading");
+        }
+      })
     }
   });
 
   $("#R4").on("click", function(){
+    $(this).addClass("loading");
     on= $("#R4 .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 4")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 4",
+        success: function(){
+          $("#R4").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 4")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 4",
+        success: function(){
+          $("#R4").removeClass("loading");
+        }
+      })
     }
   });
 
   $("#R5").on("click", function(){
+    $(this).addClass("loading");
     on= $("#R5 .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 5")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 5",
+        success: function(){
+          $("#R5").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 5")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 5",
+        success: function(){
+          $("#R5").removeClass("loading");
+        }
+      })
     }
   });
 
   $("#R6").on("click", function(){
+    $(this).addClass("loading");
     on= $("#R6 .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 6")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 6",
+        success: function(){
+          $("#R6").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 6")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 6",
+        success: function(){
+          $("#R6").removeClass("loading");
+        }
+      })
     }
   });
 
 
   $("#RGB_GROW").on("click", function(){
+    $(this).addClass("loading");
     on= $("#RGB_GROW .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL",
+        success: function(){
+          $("#RGB_GROW").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 255 50 255")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 255 50 255",
+        success: function(){
+          $("#RGB_GROW").removeClass("loading");
+        }
+      })
     }
   });
 
 
   $("#RGB_WHITE").on("click", function(){
+    $(this).addClass("loading");
     on= $("#RGB_WHITE .ico").attr("src").indexOf("-on")>=0;
     if(on){
-      $.ajax("/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL",
+        success: function(){
+          $("#RGB_WHITE").removeClass("loading");
+        }
+      })
     } else {
-      $.ajax("/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 255 255 255")
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 255 255 255",
+        success: function(){
+          $("#RGB_WHITE").removeClass("loading");
+        }
+      })
     }
   });
 

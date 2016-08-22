@@ -108,14 +108,14 @@ function formatData(series){
   return series;
 }
 function loadData(onSuccess, onError){
-  console.log("LOAD DATA");
+  // console.log("LOAD DATA");
   $.ajax({
     url: srvUrl,
     success: function (res){
       //res = JSON.parse(res);
       if(res.length>0){
         var series=res[0].series;
-        console.log(series.length + " SERIES LOADED");
+        // console.log(series.length + " SERIES LOADED");
         series=formatData(series);
         if(typeof onSuccess == "function" ) onSuccess(series);
       } else {
@@ -137,11 +137,11 @@ function updateSerie(serie){
     var y=entry[1];
     if(g.series[s].xData.indexOf(x)<0){
       g.series[s].addPoint([x,y], false, true);
-      console.log(i + ":" + x + " - " + y);
+      // console.log(i + ":" + x + " - " + y);
     }
   }
   g.redraw();
-  console.log("SERIE " + serie.name + "UPDATED");
+  // console.log("SERIE " + serie.name + "UPDATED");
 }
 function findSerie(s){
   var g=$('#container').highcharts();
@@ -156,15 +156,15 @@ function existsSerie(s){
   return findSerie(s)>=0;
 }
 function updateData(){
-  console.log("UPDATE DATA");
+  // console.log("UPDATE DATA");
   var g=$('#container').highcharts();
   loadData(
     // onSuccess
     function (series){
       for (var j=0; j<series.length;j++){
-        console.log("PROCESSING SERIE: " + series[j].name);
+        // console.log("PROCESSING SERIE: " + series[j].name);
         if(!existsSerie(series[j])){
-          console.log("ADDING NEW SERIE " + series[j]);
+          // console.log("ADDING NEW SERIE " + series[j]);
           g.addSeries(series[j]);
           /*var x = Math.floor((Math.random() * 6) + 0);
           var random = colors[x];

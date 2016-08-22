@@ -112,3 +112,6 @@ img.logo{
   margin-top:0.2em;
   padding-bottom:0.5em;
 }
+.button.loading{
+  opacity:0.5;
+}
