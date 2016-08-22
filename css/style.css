@@ -36,6 +36,7 @@ textarea{
 	background:#FFF;
 	height: 100%;
 	margin-right: 1em;
+	overflow: hidden;
 }
 
 #logo{

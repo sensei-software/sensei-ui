@@ -1,0 +1,114 @@
+#container{
+  height: auto !important;
+}
+#left{
+  float: left;
+  width: 20%;
+  margin: 0;
+}
+img.logo{
+  width: 100%;
+}
+.menu_btn{
+  margin:5%;
+  width:80%;
+  height: 30px;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  padding: 4px;
+  text-align: center;
+  background: #CCC;
+}
+.menu_btn:hover{
+  background: #AAA;
+}
+.menu_btn a{
+  font-size: 1.2em;
+  line-height: 30px;
+  color: #FFF;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+#content{
+  float: left;
+  width: 80%;
+  background-color: #EEE;
+  height: 600px;
+}
+.element{
+  width: 48%;
+  height: 220px;
+  margin: 1%;
+  float: left;
+  background-color: #FFF;
+  border-radius:10px;
+  overflow: hidden;
+}
+.element .ico{
+  float: left;
+  margin:-10px;
+  overflow: hidden;
+}
+.element h4{
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  margin-top:0.7em;
+}
+.element .value{
+  font-size: 2em;
+
+}
+.element .graph{
+  width:50%;
+  height: 100px;
+  float: left;
+}
+.element .graph iframe  {
+  -ms-zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.5);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  border:0;
+  width:200%;
+  height:210px;
+  overflow: hidden;
+  float: left;
+  padding-bottom: -50px;
+}
+.buttons{
+  text-align: left;
+  margin-left: 5px;
+}
+.button{
+  width: 11%;
+  height: 90px;
+  margin: 0.5%;
+  background-color: #FFF;
+  text-align: center;
+  border-radius: 6px;
+  display: inline-block;
+}
+.button:hover{
+  cursor: pointer;
+}
+.button:hover h4{
+  text-decoration: underline;
+}
+.button:hover .ico{
+
+}
+.button:active .ico{
+  opacity: 0.5;
+}
+.button .ico{
+  width: 64px;
+
+}
+.button h4{
+  margin-top:0.2em;
+  padding-bottom:0.5em;
+}

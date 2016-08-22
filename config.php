@@ -17,6 +17,5 @@ $SenseiMonitorRefresh = 600;
 $SenseiMonitorLastMinutes ="60&r=60";
 $SenseiMonitorLastHours = "12&r=60";
 
-$SENSEI_PATH = "/home/supaka/Projects/sensei-0.7/sensei-server";
-
+$SENSEI_PATH = "../sensei-server";
 ?>

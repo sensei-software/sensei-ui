@@ -25,21 +25,29 @@ function LoadParFromUrl(){
 
 function ExecCmd(cmd,onSuccess,onError,r,singleRunning){
 	console.log("Executing " + cmd + " for " + dev);
-
-	if(!singleRunning || !CommandRunning){
+	console.log("  r= " + r + " singleRunning= " + singleRunning);
+	if(!CommandRunning || !singleRunning){
 		CommandRunning=1;
 		$.ajax({
 			url: "/api/srv-dev-cmd.php?sid="+dev+"&cmd="+encodeURIComponent(cmd),
 			success: function (data){
+				console.log("SUCCESS Executing " + cmd + " for " + dev);
 				CommandRunning=0;
 				console.log(data);
 				if (typeof onSuccess == "function") onSuccess(data);
 			},
-			error: function(){
+			error: function(data){
+				console.log("ERROR Executing " + cmd + " for " + dev);
 				CommandRunning=0;
 				if (typeof onSuccess == "function") onError();
-			}
+			},
+			complete: function(data){
+				console.log("COMPLETE Executing " + cmd + " for " + dev);
+			},
+			timeout: 15000
 		});
+	} else {
+		console.log("Skipping " + cmd + " for " + dev);
 	}
 	if(r>0) window.setTimeout(function(){ExecCmd(cmd,onSuccess,onError,r,singleRunning)},r*1000);
 }
@@ -59,7 +67,7 @@ function RefreshStatus(rn){
 		onError=function(){
 			console.log("error refreshing");
 		},
-		RefreshInterval,1);
+		(rn ? 0 : RefreshInterval),1 );
 }
 function initStatus(){
 	console.log("init");
@@ -73,7 +81,7 @@ var relay=new Array();
 
 function parseRelayStatus(data){
 	console.log("parsing response");
-	var d=data.replace(new RegExp(/^.*\(R(.*)\).*= (\d)\r$/mgi), "$1 $2");
+	var d=data.replace(new RegExp(/^.*\(R(.*)\).*= (\d)$/mgi), "$1 $2");
 	d=d.split("\n");
 	d=jQuery.grep(d,function(el,i){
 		return el.indexOf("#")<0 && el!="";

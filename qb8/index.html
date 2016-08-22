@@ -1,0 +1,128 @@
+<!DOCTYPE>
+<HTML>
+	<HEAD>
+		<TITLE>Sensei QB8</TITLE>
+		<LINK rel="stylesheet" href="/css/style.css" type="text/css">
+      <LINK rel="stylesheet" href="style.css" type="text/css">
+		<link rel="stylesheet" href="/css/jquery-ui.css">
+		<script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+		<script src="/js/jquery-ui.js" type="text/javascript"></script>
+		<script src="/js/index.js" type="text/javascript"></script>
+		<script src="qb8.js" type="text/javascript"></script>
+	</HEAD>
+	<BODY class="main">
+		<div id="container">
+			<div id="left">
+				<img class="logo" src="ico/qb8.png">
+				<div style="clear: both;"></div>
+				<div class="menu_btn">
+					<a href="/qb8">Home QB8</a>
+				</div>
+				<div class="menu_btn">
+					<a href="/">Video Stream</a>
+				</div>
+				<br>
+				<div class="menu_btn">
+					<a href="/">Configuration</a>
+				</div>
+				<div class="menu_btn">
+					<a href="/">System Reboot</a>
+				</div>
+				<br>
+				<div class="menu_btn">
+					<a href="/">Advanced UI</a>
+				</div>
+			</div>
+		  <div id="content">
+        <div class="element" id="light">
+          <img class="ico" src="ico/light.png">
+          <h4>Light</h4>
+          <div class="value"><span>--</span> <b>%</b></div>
+					<div style="clear: both;"></div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+					</div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<div style="clear: both;"></div>
+					</div>
+        </div>
+        <div class="element" id="moisture">
+          <img class="ico" src="ico/moisture.png">
+          <h4>Moisture</h4>
+          <div class="value"><span>--</span> <b>%</b></div>
+					<div style="clear: both;"></div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+					</div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<div style="clear: both;"></div>
+					</div>
+        </div>
+        <div class="element" id="humidity">
+          <img class="ico" src="ico/humidity.png">
+          <h4>Humidity</h4>
+          <div class="value"><span>--</span> <b>%</b></div>
+					<div style="clear: both;"></div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+					</div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<div style="clear: both;"></div>
+					</div>
+        </div>
+        <div class="element" id="temperature">
+          <img class="ico" src="ico/temperature.png">
+          <h4>Temperature</h4>
+          <div class="value"><span>--</span> <b>C</b></div>
+					<div style="clear: both;"></div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+					</div>
+					<div class="graph">
+						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<div style="clear: both;"></div>
+					</div>
+        </div>
+				<div style="clear: both;"></div>
+				<div class="buttons">
+					<div class="button" id="R1">
+						<img class="ico" src="ico/lamp-off.png">
+	          <h4>Light 1</h4>
+					</div>
+					<div class="button" id="R2">
+						<img class="ico" src="ico/lamp-off.png">
+	          <h4>Light 2</h4>
+					</div>
+					<div class="button" id="R3">
+						<img class="ico" src="ico/fan-off.png">
+	          <h4>Fan OUT</h4>
+					</div>
+					<div class="button" id="R4">
+						<img class="ico" src="ico/fan-off.png">
+	          <h4>Fan IN</h4>
+					</div>
+					<div class="button" id="R5">
+						<img class="ico" src="ico/humidifier-off.png">
+	          <h4>Humidifer</h4>
+					</div>
+					<div class="button" id="R6">
+						<img class="ico" src="ico/pump-off.png">
+	          <h4>Pump</h4>
+					</div>
+					<div class="button" id="RGB_GROW">
+						<img class="ico" src="ico/rgb-off.png">
+						<h4>RGB grow</h4>
+					</div>
+					<div class="button" id="RGB_WHITE">
+						<img class="ico" src="ico/rgb-off.png">
+						<h4>RGB white</h4>
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+      </div>
+    </div>
+	</BODY>
+</HTML>
