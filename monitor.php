@@ -78,7 +78,7 @@
 				    <label id="single">single</label>
 						<input type="checkbox" id="chkCollapse" checked="checked" class="check"></input>
 				    <label id="fill">fill</label>
-						<input type="checkbox" id="chkFill" checked="checked" class="check"></input>
+						<input type="checkbox" id="chkFill" class="check"></input>
 				  </div>
 					<a href="#" id="btnGraphShow">GO</a>
 				</td>

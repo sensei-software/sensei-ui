@@ -9,6 +9,7 @@
 		<script src="/js/jquery-ui.js" type="text/javascript"></script>
 		<script src="/js/index.js" type="text/javascript"></script>
 		<script src="qb8.js" type="text/javascript"></script>
+		<script src="video.js" type="text/javascript"></script>
 	</HEAD>
 	<BODY class="main">
 		<div id="container">
@@ -19,18 +20,24 @@
 					<a href="/qb8">Home QB8</a>
 				</div>
 				<div class="menu_btn">
-					<a href="/qb8/video.html">Video Stream</a>
+					<a href="#" onclick="$('#snap').toggleClass('visible')">Video Stream</a>
 				</div>
 				<br>
 				<div class="menu_btn">
 					<a href="/">Configuration</a>
 				</div>
 				<div class="menu_btn">
-					<a href="/">System Reboot</a>
+					<a target="_blank" href="/api/srv-alias-cmd.php?alias=SenseiRestart">Sensei Restart</a>
 				</div>
 				<br>
 				<div class="menu_btn">
 					<a href="/">Advanced UI</a>
+				</div>
+				<div class="info" id="date">
+					<span class="label"></span> <span class="value">--</span>
+				</div>
+				<div class="info" id="cpuload">
+					<span class="label">Load:</span> <span class="value">--</span>
 				</div>
 			</div>
 		  <div id="content">
@@ -40,7 +47,7 @@
           <div class="value"><span>--</span> <b>%</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=30&type=area&unit=s&r=3"></iframe>
 					</div>
 					<div class="graph">
 						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
@@ -53,7 +60,7 @@
           <div class="value"><span>--</span> <b>%</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=1800&type=area&unit=s10&r=10"></iframe>
 					</div>
 					<div class="graph">
 						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
@@ -66,7 +73,7 @@
           <div class="value"><span>--</span> <b>%</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=1800&type=area&unit=s10&r=10"></iframe>
 					</div>
 					<div class="graph">
 						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
@@ -79,7 +86,7 @@
           <div class="value"><span>--</span> <b>C</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=30&type=area&unit=s&r=2"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=1800&type=area&unit=s10&r=10"></iframe>
 					</div>
 					<div class="graph">
 						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
@@ -92,10 +99,10 @@
 						<img class="ico" src="ico/lamp-off.png">
 	          <h4>Light 1</h4>
 					</div>
-					<div class="button" id="R2">
+					<!-- <div class="button" id="R2">
 						<img class="ico" src="ico/lamp-off.png">
 	          <h4>Light 2</h4>
-					</div>
+					</div> -->
 					<div class="button" id="R3">
 						<img class="ico" src="ico/fan-off.png">
 	          <h4>Fan OUT</h4>
@@ -112,6 +119,10 @@
 						<img class="ico" src="ico/pump-off.png">
 	          <h4>Pump</h4>
 					</div>
+					<div class="button" id="RGB_GREEN">
+						<img class="ico" src="ico/rgb-off.png">
+						<h4>RGB green</h4>
+					</div>
 					<div class="button" id="RGB_GROW">
 						<img class="ico" src="ico/rgb-off.png">
 						<h4>RGB grow</h4>
@@ -122,6 +133,9 @@
 					</div>
 				</div>
 				<div style="clear: both;"></div>
+				<div id="snap" onclick="$(this).toggleClass('visible')">
+					<img src="#">
+				</div>
       </div>
     </div>
 	</BODY>

@@ -1,17 +1,35 @@
 $(function(){
   updateValues();
   initButtons();
+  initGraphs();
 });
 
 
 function updateValues(){
   $.ajax({
+    url: '/api/srv-alias-cmd.php?alias=CpuLoad',
+    success: function(data){
+      val=data.split(" ")[0];
+      $("#cpuload .value").text(val);
+
+    }
+  });
+  $.ajax({
+    url: '/api/srv-sys-cmd.php?cmd=date',
+    success: function(data){
+      val=data.split(" ")[3];
+      $("#date .value").text(val);
+
+    }
+  });
+
+  // VALUES
+
+  $.ajax({
     url: '/api/srv-value.php?sid=Sensors&sensor=LS1&measure=light',
     success: function(data){
       val=data;
       $("#light .value span").text(val);
-      if(val>15) ico="light-ok.png"; else ico="light-ko.png";
-      $("#light img").attr("src","ico/"+ico);
     }
   });
   $.ajax({
@@ -19,8 +37,6 @@ function updateValues(){
     success: function(data){
       val=data;
       $("#moisture .value span").text(val);
-      if(val>40) ico="moisture-ok.png"; else ico="moisture-ko.png";
-      $("#moisture img").attr("src","ico/"+ico);
     }
   });
   $.ajax({
@@ -28,8 +44,6 @@ function updateValues(){
     success: function(data){
       val=data;
       $("#humidity .value span").text(val);
-      if(val>40) ico="humidity-ok.png"; else ico="humidity-ko.png";
-      $("#humidity img").attr("src","ico/"+ico);
     }
   });
   $.ajax({
@@ -37,10 +51,45 @@ function updateValues(){
     success: function(data){
       val=data;
       $("#temperature .value span").text(val);
-      if(val>25) ico="temperature-ok.png"; else ico="temperature-ko.png";
+    }
+  });
+
+  // ICONS
+
+  $.ajax({
+    url: '/api/srv-value.php?sid=Icons&sensor=L4&measure=LED_STATUS',
+    success: function(data){
+      val=data;
+      if(val==0) ico="light-ok.png"; else ico="light-ko.png";
+      $("#light img").attr("src","ico/"+ico);
+    }
+  });
+  $.ajax({
+    url: '/api/srv-value.php?sid=Icons&sensor=L2&measure=LED_STATUS',
+    success: function(data){
+      val=data;
+      if(val==0) ico="moisture-ok.png"; else ico="moisture-ko.png";
+      $("#moisture img").attr("src","ico/"+ico);
+    }
+  });
+  $.ajax({
+    url: '/api/srv-value.php?sid=Icons&sensor=L3&measure=LED_STATUS',
+    success: function(data){
+      val=data;
+      if(val==0) ico="humidity-ok.png"; else ico="humidity-ko.png";
+      $("#humidity img").attr("src","ico/"+ico);
+    }
+  });
+  $.ajax({
+    url: '/api/srv-value.php?sid=Icons&sensor=L1&measure=LED_STATUS',
+    success: function(data){
+      val=data;
+      if(val==0) ico="temperature-ok.png"; else ico="temperature-ko.png";
       $("#temperature img").attr("src","ico/"+ico);
     }
   });
+
+  // BUTTONS
 
   $.ajax({
     url: '/api/srv-value.php?sid=Relays&sensor=R1&measure=REL_STATUS',
@@ -55,19 +104,19 @@ function updateValues(){
       $("#"+el_id+" .ico").attr("src",new_src);
     }
   });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Relays&sensor=R2&measure=REL_STATUS',
-    success: function(data){
-      el_id="R2";
-      val=data;
-      if(val==1)
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
-      else {
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
-      }
-      $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
+  // $.ajax({
+  //   url: '/api/srv-value.php?sid=Relays&sensor=R2&measure=REL_STATUS',
+  //   success: function(data){
+  //     el_id="R2";
+  //     val=data;
+  //     if(val==1)
+  //       new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
+  //     else {
+  //       new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
+  //     }
+  //     $("#"+el_id+" .ico").attr("src",new_src);
+  //   }
+  // });
   $.ajax({
     url: '/api/srv-value.php?sid=Relays&sensor=R3&measure=REL_STATUS',
     success: function(data){
@@ -113,6 +162,20 @@ function updateValues(){
       el_id="R6";
       val=data;
       if(val==1)
+        new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
+      else {
+        new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
+      }
+      $("#"+el_id+" .ico").attr("src",new_src);
+    }
+  });
+
+  $.ajax({
+    url: '/api/srv-sys-cmd.php?cmd=grep%20"RGB1_ALL"%20/home/sensei/sensei/sensei-server/dev/Sensors/sensei_commands.log%20%20|%20tail%20-1',
+    success: function(data){
+      el_id="RGB_GREEN";
+      val=data;
+      if(val.indexOf("RGB1_ALL 0 50 0") != -1)
         new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
       else {
         new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
@@ -298,6 +361,26 @@ function initButtons(){
     }
   });
 
+  $("#RGB_GREEN").on("click", function(){
+    $(this).addClass("loading");
+    on= $("#RGB_GREEN .ico").attr("src").indexOf("-on")>=0;
+    if(on){
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL",
+        success: function(){
+          $("#RGB_GREEN").removeClass("loading");
+        }
+      })
+    } else {
+      $.ajax({
+        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 0 50 0",
+        success: function(){
+          $("#RGB_GREEN").removeClass("loading");
+        }
+      })
+    }
+  });
+
 
   $("#RGB_WHITE").on("click", function(){
     $(this).addClass("loading");
@@ -320,4 +403,11 @@ function initButtons(){
   });
 
 
+}
+
+
+function initGraphs(){
+  $(".element").on("click",function(){
+    $(this).toggleClass("zoom");
+  });
 }
