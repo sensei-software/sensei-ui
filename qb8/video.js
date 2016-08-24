@@ -5,6 +5,6 @@ $(function(){
 
 function updateSnap(){
   d = new Date();
-  $("#snap img").attr("src", "video/test00001.jpg?"+d.getTime());
+  $("#snap img").attr("src", "video/snap00001.jpg?"+d.getTime());
   window.setTimeout(updateSnap,2000);
 };
