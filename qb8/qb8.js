@@ -4,8 +4,7 @@ $(function(){
   initGraphs();
 });
 
-
-function updateValues(){
+function updateValues(oneshot){
   $.ajax({
     url: '/api/srv-alias-cmd.php?alias=CpuLoad',
     success: function(data){
@@ -24,195 +23,139 @@ function updateValues(){
   });
 
   // VALUES
-
   $.ajax({
-    url: '/api/srv-value.php?sid=Sensors&sensor=LS1&measure=light',
+    url: '/api/srv-sys-cmd.php?path=sensei&cmd=sensei-db-values',
     success: function(data){
-      val=data;
+      re = /Sensors>LS1\s*LIGHT\s*.\s*([\d.]+?)\s+/gi
+      val=parseFloat(re.exec(data)[1]).toFixed(1);
+      console.log('LIGHT=' + val);
       $("#light .value span").text(val);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Sensors&sensor=HL01&measure=moisture',
-    success: function(data){
-      val=data;
+
+      re = /Sensors>HL01\s*MOISTURE\s*.\s*([\d.]+?)\s+/gi
+      val=parseFloat(re.exec(data)[1]).toFixed(1);
+      console.log('MOISTURE=' + val);
       $("#moisture .value span").text(val);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Sensors&sensor=DHT11&measure=humidity&samples=5',
-    success: function(data){
-      val=data;
+
+      re = /Sensors>DHT11\s*HUMIDITY\s*.\s*([\d.]+?)\s+/gi
+      val=parseFloat(re.exec(data)[1]).toFixed(1);
+      console.log('HUMIDITY=' + val);
       $("#humidity .value span").text(val);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Sensors&sensor=DHT11&measure=temperature&samples=10',
-    success: function(data){
-      val=data;
+
+      re = /Sensors>DHT11\s*TEMPERATURE\s*.\s*([\d.]+?)\s+/gi
+      val=parseFloat(re.exec(data)[1]).toFixed(1);
+      console.log('TEMPERATURE=' + val);
       $("#temperature .value span").text(val);
-    }
-  });
 
-  // ICONS
+      // ICONS
+      re = /Icons>L4\s*LED_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="0.00";
+      console.log('L4=' + val);
+      $("#light img").attr("src","ico/light-"+ (val ? "ok" : "ko") + ".png" );
 
-  $.ajax({
-    url: '/api/srv-value.php?sid=Icons&sensor=L4&measure=LED_STATUS',
-    success: function(data){
-      val=data;
-      if(val==0) ico="light-ok.png"; else ico="light-ko.png";
-      $("#light img").attr("src","ico/"+ico);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Icons&sensor=L2&measure=LED_STATUS',
-    success: function(data){
-      val=data;
-      if(val==0) ico="moisture-ok.png"; else ico="moisture-ko.png";
-      $("#moisture img").attr("src","ico/"+ico);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Icons&sensor=L3&measure=LED_STATUS',
-    success: function(data){
-      val=data;
-      if(val==0) ico="humidity-ok.png"; else ico="humidity-ko.png";
-      $("#humidity img").attr("src","ico/"+ico);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Icons&sensor=L1&measure=LED_STATUS',
-    success: function(data){
-      val=data;
-      if(val==0) ico="temperature-ok.png"; else ico="temperature-ko.png";
-      $("#temperature img").attr("src","ico/"+ico);
-    }
-  });
+      re = /Icons>L2\s*LED_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="0.00";
+      console.log('L2=' + val);
+      $("#moisture img").attr("src","ico/moisture-"+ (val ? "ok" : "ko") + ".png" );
 
-  // BUTTONS
+      re = /Icons>L3\s*LED_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="0.00";
+      console.log('L3=' + val);
+      $("#humidity img").attr("src","ico/humidity-"+ (val ? "ok" : "ko") + ".png" );
 
-  $.ajax({
-    url: '/api/srv-value.php?sid=Relays&sensor=R1&measure=REL_STATUS',
-    success: function(data){
+      re = /Icons>L1\s*LED_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="0.00";
+      console.log('L1=' + val);
+      $("#temperature img").attr("src","ico/temperature-"+ (val ? "ok" : "ko") + ".png" );
+
+
+      re = /Relays>R1\s*REL_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="1.00";
       el_id="R1";
-      val=data;
-      if(val==1)
+      console.log(el_id +'=' + val);
+      if(val)
         new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
       else {
         new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
       }
       $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
-  // $.ajax({
-  //   url: '/api/srv-value.php?sid=Relays&sensor=R2&measure=REL_STATUS',
-  //   success: function(data){
-  //     el_id="R2";
-  //     val=data;
-  //     if(val==1)
-  //       new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
-  //     else {
-  //       new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
-  //     }
-  //     $("#"+el_id+" .ico").attr("src",new_src);
-  //   }
-  // });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Relays&sensor=R3&measure=REL_STATUS',
-    success: function(data){
+
+
+      re = /Relays>R3\s*REL_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="1.00";
       el_id="R3";
-      val=data;
-      if(val==1)
+      console.log(el_id +'=' + val);
+      if(val)
         new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
       else {
         new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
       }
       $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Relays&sensor=R4&measure=REL_STATUS',
-    success: function(data){
+
+
+      re = /Relays>R4\s*REL_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="1.00";
       el_id="R4";
-      val=data;
-      if(val==1)
+      console.log(el_id +'=' + val);
+      if(val)
         new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
       else {
         new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
       }
       $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Relays&sensor=R5&measure=REL_STATUS',
-    success: function(data){
+
+
+      re = /Relays>R5\s*REL_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="1.00";
       el_id="R5";
-      val=data;
-      if(val==1)
+      console.log(el_id +'=' + val);
+      if(val)
         new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
       else {
         new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
       }
       $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
-  $.ajax({
-    url: '/api/srv-value.php?sid=Relays&sensor=R6&measure=REL_STATUS',
-    success: function(data){
+
+
+      re = /Relays>R6\s*REL_STATUS\s*.\s*([\d.]+?)\s+/gi
+      val=re.exec(data)[1]=="1.00";
       el_id="R6";
-      val=data;
-      if(val==1)
+      console.log(el_id +'=' + val);
+      if(val)
         new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
       else {
         new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
       }
       $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
 
-  $.ajax({
-    url: '/api/srv-sys-cmd.php?cmd=grep%20"RGB1_ALL"%20/home/sensei/sensei/sensei-server/dev/Sensors/sensei_commands.log%20%20|%20tail%20-1',
-    success: function(data){
-      el_id="RGB_GREEN";
-      val=data;
-      if(val.indexOf("RGB1_ALL 0 50 0") != -1)
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
-      else {
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
-      }
-      $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
+      re = /Sensors>RGB\s*RED\s*.\s*([\d.]+?)\s+/gi
+      r=re.exec(data)[1];
+      re = /Sensors>RGB\s*GREEN\s*.\s*([\d.]+?)\s+/gi
+      g=re.exec(data)[1];
+      re = /Sensors>RGB\s*BLUE\s*.\s*([\d.]+?)\s+/gi
+      b=re.exec(data)[1];
+      val=Math.floor(r)+" "+Math.floor(g)+" "+Math.floor(b);
+      console.log('RGB=' + val);
 
-  $.ajax({
-    url: '/api/srv-sys-cmd.php?cmd=grep%20"RGB1_ALL"%20/home/sensei/sensei/sensei-server/dev/Sensors/sensei_commands.log%20%20|%20tail%20-1',
-    success: function(data){
-      el_id="RGB_GROW";
-      val=data;
-      if(val.indexOf("RGB1_ALL 255 50 255") != -1)
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
-      else {
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
-      }
-      $("#"+el_id+" .ico").attr("src",new_src);
-    }
-  });
-
-  $.ajax({
-    url: '/api/srv-sys-cmd.php?cmd=grep%20"RGB1_ALL"%20/home/sensei/sensei/sensei-server/dev/Sensors/sensei_commands.log%20%20|%20tail%20-1',
-    success: function(data){
+      el_id=""
+      if(val=="0 25 0")
+        el_id="RGB_GREEN";
+      if(val=="255 50 255")
+        el_id="RGB_GROW";
+      if(val=="255 255 255")
       el_id="RGB_WHITE";
-      val=data;
-      if(val.indexOf("RGB1_ALL 255 255 255") != -1)
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on")
-      else {
-        new_src=$("#"+el_id+" .ico").attr("src").replace("-on","-off")
+
+      if(el_id!="RGB_GREEN") $("#RGB_GREEN .ico").attr("src","ico/rgb-off.png");
+      if(el_id!="RGB_GROW") $("#RGB_GROW .ico").attr("src","ico/rgb-off.png");
+      if(el_id!="RGB_WHITE") $("#RGB_WHITE .ico").attr("src","ico/rgb-off.png");
+
+      if(el_id){
+        new_src=$("#"+el_id+" .ico").attr("src").replace("-off","-on");
+        $("#"+el_id+" .ico").attr("src",new_src);
       }
-      $("#"+el_id+" .ico").attr("src",new_src);
     }
   });
 
-  window.setTimeout(updateValues,2000);
+  if (!oneshot) window.setTimeout(updateValues,2000);
 }
 
 
@@ -227,6 +170,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 1",
         success: function(){
+          updateValues(true);
           $("#R1").removeClass("loading");
         }
       })
@@ -234,6 +178,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 1",
         success: function(){
+          updateValues(true);
           $("#R1").removeClass("loading");
         }
       })
@@ -247,6 +192,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 2",
         success: function(){
+          updateValues(true);
           $("#R2").removeClass("loading");
         }
       })
@@ -254,6 +200,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 2",
         success: function(){
+          updateValues(true);
           $("#R2").removeClass("loading");
         }
       })
@@ -267,6 +214,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 3",
         success: function(){
+          updateValues(true);
           $("#R3").removeClass("loading");
         }
       })
@@ -274,6 +222,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 3",
         success: function(){
+          updateValues(true);
           $("#R3").removeClass("loading");
         }
       })
@@ -287,6 +236,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 4",
         success: function(){
+          updateValues(true);
           $("#R4").removeClass("loading");
         }
       })
@@ -294,6 +244,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 4",
         success: function(){
+          updateValues(true);
           $("#R4").removeClass("loading");
         }
       })
@@ -307,6 +258,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 5",
         success: function(){
+          updateValues(true);
           $("#R5").removeClass("loading");
         }
       })
@@ -314,6 +266,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 5",
         success: function(){
+          updateValues(true);
           $("#R5").removeClass("loading");
         }
       })
@@ -327,6 +280,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_OFF 6",
         success: function(){
+          updateValues(true);
           $("#R6").removeClass("loading");
         }
       })
@@ -334,6 +288,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Relays&cmd=REL_ON 6",
         success: function(){
+          updateValues(true);
           $("#R6").removeClass("loading");
         }
       })
@@ -348,6 +303,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL",
         success: function(){
+          updateValues(true);
           $("#RGB_GROW").removeClass("loading");
         }
       })
@@ -355,6 +311,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 255 50 255",
         success: function(){
+          updateValues(true);
           $("#RGB_GROW").removeClass("loading");
         }
       })
@@ -368,14 +325,18 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL",
         success: function(){
+          updateValues(true);
           $("#RGB_GREEN").removeClass("loading");
         }
       })
     } else {
       $.ajax({
-        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 0 50 0",
+        url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 0 25 0",
         success: function(){
+          updateValues(true);
           $("#RGB_GREEN").removeClass("loading");
+          // $.ajax('/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_PX 0 255 255 255');
+          // $.ajax('/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_PX 99 255 255 255');
         }
       })
     }
@@ -389,6 +350,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL",
         success: function(){
+          updateValues(true);
           $("#RGB_WHITE").removeClass("loading");
         }
       })
@@ -396,6 +358,7 @@ function initButtons(){
       $.ajax({
         url:"/api/srv-dev-cmd.php?sid=Sensors&cmd=RGB1_ALL 255 255 255",
         success: function(){
+          updateValues(true);
           $("#RGB_WHITE").removeClass("loading");
         }
       })

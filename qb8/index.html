@@ -20,17 +20,17 @@
 					<a href="/qb8">Home QB8</a>
 				</div>
 				<div class="menu_btn">
-					<a href="#" onclick="$('#snap').toggleClass('visible')">Video Stream</a>
+					<a href="#" onclick="$('#snap').toggleClass('visible');updateSnap()">Video Stream</a>
 				</div>
 				<div class="menu_btn">
 					<a href="video.html" >Timelapse</a>
 				</div>
 				<br>
 				<div class="menu_btn">
-					<a href="/">Settings</a>
+					<a href="#" onclick="$('#settings').toggleClass('visible');">Settings</a>
 				</div>
 				<div class="menu_btn">
-					<a target="_blank" href="/api/srv-alias-cmd.php?alias=SenseiRestart">Sensei Restart</a>
+					<a target="hidden" onclick="return confirm('Are you sure?')" href="/api/srv-alias-cmd.php?alias=SenseiRestart">Sensei Restart</a>
 				</div>
 				<br>
 				<div class="menu_btn">
@@ -43,56 +43,61 @@
 					<span class="label">Load:</span> <span class="value">--</span>
 				</div>
 			</div>
+
 		  <div id="content">
         <div class="element" id="light">
+					<a href="#" class="close">X</a>
           <img class="ico" src="ico/light.png">
           <h4>Light</h4>
           <div class="value"><span>--</span> <b>%</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=30&type=area&unit=s&r=3"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=30&type=area&unit=s&r=5"></iframe>
 					</div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>
         <div class="element" id="moisture">
+					<a href="#"  class="close">X</a>
           <img class="ico" src="ico/moisture.png">
           <h4>Moisture</h4>
           <div class="value"><span>--</span> <b>%</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=1800&type=area&unit=s10&r=10"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=600&type=area&unit=s5&r=10"></iframe>
 					</div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>
         <div class="element" id="humidity">
+					<a href="#"  class="close">X</a>
           <img class="ico" src="ico/humidity.png">
           <h4>Humidity</h4>
           <div class="value"><span>--</span> <b>%</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=1800&type=area&unit=s10&r=10"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=600&type=area&unit=s5&r=10"></iframe>
 					</div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>
         <div class="element" id="temperature">
+					<a href="#" class="close">X</a>
           <img class="ico" src="ico/temperature.png">
           <h4>Temperature</h4>
           <div class="value"><span>--</span> <b>C</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=1800&type=area&unit=s10&r=10"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=600&type=area&unit=s5&r=10"></iframe>
 					</div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=24&type=column&unit=h&r=600"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>
@@ -136,10 +141,37 @@
 					</div>
 				</div>
 				<div style="clear: both;"></div>
-				<div id="snap" onclick="$(this).toggleClass('visible')">
-					<img src="#">
+				<div id="snap">
+					<img src="#"  onclick="$(this).parent().toggleClass('visible')">
+					<div id="takesnap"><a href="/api/srv-sys-cmd.php?cmd=/home/sensei/video/usb/snapshot.sh" target="hidden">snap</a></div>
 				</div>
+				<div id="settings" >
+					<h1>Settings</h1>
+					<a href="#" onclick="$(this).parent().toggleClass('visible')" class="close">X</a>
+
+					<div class="element" id="settings_light">
+	          <img class="ico" src="ico/light.png">
+	          <h4>Light</h4>
+						<div style="clear: both;"></div>
+	        </div>
+	        <div class="element" id="settings_moisture">
+	          <img class="ico" src="ico/moisture.png">
+	          <h4>Moisture</h4>
+						<div style="clear: both;"></div>
+	        </div>
+	        <div class="element" id="settings_humidity">
+	          <img class="ico" src="ico/humidity.png">
+	          <h4>Humidity</h4>
+						<div style="clear: both;"></div>
+	        </div>
+	        <div class="element" id="settings_temperature">
+	          <img class="ico" src="ico/temperature.png">
+	          <h4>Temperature</h4>
+						<div style="clear: both;"></div>
+				</div>
+
       </div>
     </div>
+		<iframe id="hidden" name="hidden" src="">
 	</BODY>
 </HTML>

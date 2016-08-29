@@ -75,7 +75,7 @@
 				</div>
 			</div>
 			<div id="winOut">
-				<iframe name="frameOut" frameBorder="0" width="100%" height="100%" src="/dashboard.php"></iframe>
+				<iframe name="frameOut" frameBorder="0" width="100%" height="100%" src="/sensei-devices.php"></iframe>
 			</div>
 		</div>
 	</BODY>
