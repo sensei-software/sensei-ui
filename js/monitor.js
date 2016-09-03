@@ -65,10 +65,10 @@ $(function(){
 	if(!aggr){
 		// initial values
 		aggr="m";
-		setCookie(savedMonitor+"_aggr","m");
+		setCookie(savedMonitor+"_aggr","s");
 		setCookie(savedMonitor+"_s","");
 		setCookie(savedMonitor+"_j",1);
-		setCookie(savedMonitor+"_q",60);
+		setCookie(savedMonitor+"_q",6);
 		setCookie(savedMonitor+"_t","spline");
 		setCookie(savedMonitor+"_r","60");
 		setCookie(savedMonitor+"_f",1);

@@ -10,38 +10,21 @@
 		<script src="/js/index.js" type="text/javascript"></script>
 		<script src="qb8.js" type="text/javascript"></script>
 		<script src="video.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" href="favicon.ico" />
+
 	</HEAD>
 	<BODY class="main">
 		<div id="container">
 			<div id="left">
-				<img class="logo" src="ico/qb8.png">
-				<div style="clear: both;"></div>
-				<div class="menu_btn">
-					<a href="/qb8">Home QB8</a>
-				</div>
-				<div class="menu_btn">
-					<a href="#" onclick="$('#snap').toggleClass('visible');updateSnap()">Video Stream</a>
-				</div>
-				<div class="menu_btn">
-					<a href="video.html" >Timelapse</a>
-				</div>
-				<br>
-				<div class="menu_btn">
-					<a href="#" onclick="$('#settings').toggleClass('visible');">Settings</a>
-				</div>
-				<div class="menu_btn">
-					<a target="hidden" onclick="return confirm('Are you sure?')" href="/api/srv-alias-cmd.php?alias=SenseiRestart">Sensei Restart</a>
-				</div>
-				<br>
-				<div class="menu_btn">
-					<a href="/">Advanced UI</a>
-				</div>
-				<div class="info" id="date">
-					<span class="label"></span> <span class="value">--</span>
-				</div>
-				<div class="info" id="cpuload">
-					<span class="label">Load:</span> <span class="value">--</span>
-				</div>
+					<?php include "menu.html" ?>
+					<div class="info" id="date">
+						<span class="label"></span> <span class="value">--</span>
+					</div>
+					<div class="info" id="cpuload">
+						<span class="label">Load:</span> <span class="value">--</span>
+					</div>
 			</div>
 
 		  <div id="content">
@@ -140,36 +123,16 @@
 						<h4>RGB white</h4>
 					</div>
 				</div>
+			<div id	="logline" onclick="$(this).toggleClass('zoom')">
+				<a href="#"  class="close">X</a>
+			</div>
 				<div style="clear: both;"></div>
 				<div id="snap">
 					<img src="#"  onclick="$(this).parent().toggleClass('visible')">
-					<div id="takesnap"><a href="/api/srv-sys-cmd.php?cmd=/home/sensei/video/usb/snapshot.sh" target="hidden">snap</a></div>
+					<div id="takesnap"><a href="/api/srv-sys-cmd.php?cmd=/home/sensei/video/usb/snapshot.sh" target="hidden">
+						<i class="fa fa-camera" aria-hidden="true"></i>
+						</a></div>
 				</div>
-				<div id="settings" >
-					<h1>Settings</h1>
-					<a href="#" onclick="$(this).parent().toggleClass('visible')" class="close">X</a>
-
-					<div class="element" id="settings_light">
-	          <img class="ico" src="ico/light.png">
-	          <h4>Light</h4>
-						<div style="clear: both;"></div>
-	        </div>
-	        <div class="element" id="settings_moisture">
-	          <img class="ico" src="ico/moisture.png">
-	          <h4>Moisture</h4>
-						<div style="clear: both;"></div>
-	        </div>
-	        <div class="element" id="settings_humidity">
-	          <img class="ico" src="ico/humidity.png">
-	          <h4>Humidity</h4>
-						<div style="clear: both;"></div>
-	        </div>
-	        <div class="element" id="settings_temperature">
-	          <img class="ico" src="ico/temperature.png">
-	          <h4>Temperature</h4>
-						<div style="clear: both;"></div>
-				</div>
-
       </div>
     </div>
 		<iframe id="hidden" name="hidden" src="">

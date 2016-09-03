@@ -25,12 +25,12 @@
 					<div class="tblElem">
 				    <label>aggr</label>
 						<select id="selAggr">
-							<option value="s">second</option>
+							<option value="s" selected="selected">second</option>
 							<option value="s5">5s</option>
 							<option value="s10">10s</option>
 							<option value="m">minute</option>
 							<option value="m10">10m</option>
-							<option value="h" selected="selected">hour</option>
+							<option value="h">hour</option>
 				    </select>
 				  </div>
 					<div class="tblElem">
@@ -38,12 +38,12 @@
 						<select id="selLast">
 				    	<option value="1">1</option>
 				    	<option value="2">2</option>
-				    	<option value="6">6</option>
+				    	<option value="6" selected="selected">6</option>
 				    	<option value="12">12</option>
 							<option value="24">24</option>
 							<option value="30">24</option>
 							<option value="48">48</option>
-							<option value="60" selected="selected">60</option>
+							<option value="60">60</option>
 							<option value="120">120</option>
 							<option value="360">360</option>
 							<option value="720">720</option>

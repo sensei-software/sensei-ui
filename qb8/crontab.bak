@@ -1,0 +1,28 @@
+MAILTO=""
+
+# m h  dom mon dow   command
+PATH="/home/sensei/sensei/sensei-server/bin:/home/sensei/sensei/sensei-server/bin:/home/sensei/sensei/sensei-server/bin:/home/sensei/sensei/sensei-server/bin:/home/sensei/sensei/sensei-server/bin:/home/sensei/sensei/sensei-server/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games"
+@reboot sleep 30 && sensei-start
+
+# m h  dom mon dow   command
+
+# DAY/NIGHT
+0 5 * * * /home/sensei/sensei/sensei-server/conf/rules/day.sh
+0 20 * * * /home/sensei/sensei/sensei-server/conf/rules/night.sh
+
+# LIGHTS
+0 5 * * * sensei-cmd "RGB1_ALL 255 50 255" Sensors -b
+0 20 * * * sensei-cmd "RGB1_ALL 0 25 0" Sensors -b
+
+# FANS
+*/30 * * * * sensei-cmd "REL_ON 3" Relays -b && sleep 5 && sensei-cmd "REL_OFF 3" Relays -b && sleep 10 && sensei-cmd "REL_ON 4" Relays -b && sleep 5 && sensei-cmd "REL_OFF 4" Relays -b
+
+# PUMP
+0 0-5 * * * sensei-cmd "REL_ON 5" Relays -b && sleep 60 && sensei-cmd "REL_OFF 5" Relays -b
+
+# RGB PULSE
+# * * * * * /home/sensei/sensei/sensei-server/batch/rgb_pulse.sh
+
+# VIDEO
+* * * * * /home/sensei/video/usb/snapshot.sh
+*/30 * * * * /home/sensei/video/usb/timelapse.sh

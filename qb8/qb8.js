@@ -14,10 +14,18 @@ function updateValues(oneshot){
     }
   });
   $.ajax({
-    url: '/api/srv-sys-cmd.php?cmd=date',
+    url: "/api/srv-sys-cmd.php?cmd=date %2B'%25T'",
     success: function(data){
-      val=data.split(" ")[3];
+      val=data;
       $("#date .value").text(val);
+
+    }
+  });
+  $.ajax({
+    url: '/api/srv-sys-cmd.php?cmd=tail -n 20 /home/sensei/sensei/sensei-server/logs/sensei.log',
+    success: function(data){
+      val=data.replace(/\n/g,"<br>",true);
+      $("#logline").html(val);
 
     }
   });
@@ -155,7 +163,7 @@ function updateValues(oneshot){
     }
   });
 
-  if (!oneshot) window.setTimeout(updateValues,2000);
+  if (!oneshot) window.setTimeout(updateValues,3000);
 }
 
 
