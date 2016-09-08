@@ -30,6 +30,15 @@ function updateValues(oneshot){
     }
   });
 
+  $.ajax({
+    url: '/api/srv-sys-cmd.php?cmd=/home/sensei/sensei/sensei-server/batch/last_relon.sh 5',
+    success: function(data){
+      val=data.replace(/\n/g,"<br>",true);
+      $("#moisture .ext_value span").html(val);
+
+    }
+  });
+
   // VALUES
   $.ajax({
     url: '/api/srv-sys-cmd.php?path=sensei&cmd=sensei-db-values',
@@ -38,6 +47,11 @@ function updateValues(oneshot){
       val=parseFloat(re.exec(data)[1]).toFixed(1);
       console.log('LIGHT=' + val);
       $("#light .value span").text(val);
+
+      re = /Weather>apixu\s*IS_DAY\s*.\s*([\d.]+?)\s+/gi
+      val=parseFloat(re.exec(data)[1]) ? "day" : "night";
+      console.log('IS_DAY=' + val);
+      $("#light .ext_value span").text(val);
 
       re = /Sensors>HL01\s*MOISTURE\s*.\s*([\d.]+?)\s+/gi
       val=parseFloat(re.exec(data)[1]).toFixed(1);
@@ -49,10 +63,20 @@ function updateValues(oneshot){
       console.log('HUMIDITY=' + val);
       $("#humidity .value span").text(val);
 
+      re = /Weather>apixu\s*HUMIDITY\s*.\s*([\d.]+?)\s+/gi
+      val=parseFloat(re.exec(data)[1]).toFixed(1);
+      console.log('HUMIDITY=' + val);
+      $("#humidity .ext_value span").text(val);
+
       re = /Sensors>DHT11\s*TEMPERATURE\s*.\s*([\d.]+?)\s+/gi
       val=parseFloat(re.exec(data)[1]).toFixed(1);
       console.log('TEMPERATURE=' + val);
       $("#temperature .value span").text(val);
+
+      re = /Weather>apixu\s*TEMPERATURE\s*.\s*([\d.]+?)\s+/gi
+      val=parseFloat(re.exec(data)[1]).toFixed(1);
+      console.log('TEMPERATURE=' + val);
+      $("#temperature .ext_value span").text(val);
 
       // ICONS
       re = /Icons>L4\s*LED_STATUS\s*.\s*([\d.]+?)\s+/gi

@@ -28,6 +28,13 @@ function loadSettings(){
       re=/# PUMP\n[^\n]+sleep (\d+?)\s/
       val=re.exec(data)[1];
       $("#pump_secs").val(val)
+      // CAM
+      re=/# VIDEO\n\*\/(\d+?)\s/
+      val=re.exec(data)[1];
+      $("#snap_freq").val(val)
+      re=/# VIDEO\n[^\n]+\n\*\/(\d+?)\s/
+      val=re.exec(data)[1];
+      $("#timelapse_freq").val(val)
     }
   });
 
@@ -58,6 +65,33 @@ function loadSettings(){
   });
 
 
+    $.ajax({
+      url:"/api/srv-sys-cmd.php?cmd=grep -oP '(?<=THRESHOLD=\\\")\\d%2B' /home/sensei/sensei/sensei-server/conf/rules/check-moisture.day.*",
+      success: function(data){
+        $("#moisture_day").val(data)
+      }
+    });
+    $.ajax({
+      url:"/api/srv-sys-cmd.php?cmd=grep -oP '(?<=THRESHOLD=\\\")\\d%2B' /home/sensei/sensei/sensei-server/conf/rules/check-moisture.night.*",
+      success: function(data){
+        $("#moisture_night").val(data)
+      }
+    });
+
+
+        $.ajax({
+          url:"/api/srv-sys-cmd.php?cmd=grep -oP '(?<=THRESHOLD=\\\")\\d%2B' /home/sensei/sensei/sensei-server/conf/rules/check-temp.day.*",
+          success: function(data){
+            $("#temperature_day").val(data)
+          }
+        });
+        $.ajax({
+          url:"/api/srv-sys-cmd.php?cmd=grep -oP '(?<=THRESHOLD=\\\")\\d%2B' /home/sensei/sensei/sensei-server/conf/rules/check-temp.night.*",
+          success: function(data){
+            $("#temperature_night").val(data)
+          }
+        });
+
 }
 
 
@@ -71,8 +105,10 @@ function saveSettings(){
   fan_secs=$("#fan_secs").val();
   pump_cycles=$("#pump_cycles").val();
   pump_secs=$("#pump_secs").val();
+  snap_freq=$("#snap_freq").val();
+  timelapse_freq=$("#timelapse_freq").val();
 
-  cmd="/home/sensei/sensei/sensei-ui/qb8/save_crons.sh "+day_start+ " " +night_start+" "+fan_freq+" "+fan_secs+" "+pump_cycles+" "+pump_secs;
+  cmd="/home/sensei/sensei/sensei-ui/qb8/save_crons.sh "+day_start+ " " +night_start+" "+fan_freq+" "+fan_secs+" "+pump_cycles+" "+pump_secs+" "+snap_freq+" "+timelapse_freq;
   $.ajax({
     url:"/api/srv-sys-cmd.php?cmd="+encodeURIComponent(cmd),
     async: false });
@@ -84,7 +120,11 @@ function saveSettings(){
   light_night=$("#light_night").val();
   humidity_day=$("#humidity_day").val();
   humidity_night=$("#humidity_night").val();
-  cmd="/home/sensei/sensei/sensei-ui/qb8/save_rules.sh "+light_day+ " " +light_night+" "+humidity_day+" "+humidity_night;
+  moisture_day=$("#moisture_day").val();
+  moisture_night=$("#moisture_night").val();
+  temperature_day=$("#temperature_day").val();
+  temperature_night=$("#temperature_night").val();
+  cmd="/home/sensei/sensei/sensei-ui/qb8/save_rules.sh "+light_day+ " " +light_night+" "+humidity_day+" "+humidity_night+" "+moisture_day+ " " +moisture_night+" "+temperature_day+" "+temperature_night;
   $.ajax({
     url:"/api/srv-sys-cmd.php?cmd="+encodeURIComponent(cmd),
     async: false });

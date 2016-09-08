@@ -33,12 +33,13 @@
           <img class="ico" src="ico/light.png">
           <h4>Light</h4>
           <div class="value"><span>--</span> <b>%</b></div>
+					<div class="ext_value">Ext. <b>is</b> <span>--</span></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
 						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=30&type=area&unit=s&r=5"></iframe>
 					</div>
-					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=light&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
+					<div class="graph graph2">
+						<iframe  src="/sensei-graph.php?title=&filter=light,is_day*100&single=1&fill=0&last=48&type=spline&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>
@@ -47,12 +48,13 @@
           <img class="ico" src="ico/moisture.png">
           <h4>Moisture</h4>
           <div class="value"><span>--</span> <b>%</b></div>
+					<div class="ext_value"><b>Watered</b> <span>--</span></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
 						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=600&type=area&unit=s5&r=10"></iframe>
 					</div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=moist&single=1&fill=0&last=48&type=spline&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>
@@ -61,12 +63,13 @@
           <img class="ico" src="ico/humidity.png">
           <h4>Humidity</h4>
           <div class="value"><span>--</span> <b>%</b></div>
+					<div class="ext_value">Ext. <span>--</span> <b>%</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=600&type=area&unit=s5&r=10"></iframe>
+						<iframe  src="/sensei-graph.php?title=&filter=dht11 humidity&single=1&fill=0&last=600&type=area&unit=s5&r=10"></iframe>
 					</div>
-					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
+					<div class="graph graph2">
+						<iframe  src="/sensei-graph.php?title=&filter=humidity&single=1&fill=0&last=48&type=spline&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>
@@ -75,12 +78,13 @@
           <img class="ico" src="ico/temperature.png">
           <h4>Temperature</h4>
           <div class="value"><span>--</span> <b>C</b></div>
+					<div class="ext_value">Ext. <span>--</span> <b>C</b></div>
 					<div style="clear: both;"></div>
 					<div class="graph">
 						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=600&type=area&unit=s5&r=10"></iframe>
 					</div>
-					<div class="graph">
-						<iframe  src="/sensei-graph.php?title=&filter=DHT11 temp&single=1&fill=0&last=48&type=column&unit=h&r=600"></iframe>
+					<div class="graph graph2">
+						<iframe  src="/sensei-graph.php?title=&filter=dht11 temp, weather temp&single=1&fill=0&last=48&type=spline&unit=h&r=600"></iframe>
 						<div style="clear: both;"></div>
 					</div>
         </div>

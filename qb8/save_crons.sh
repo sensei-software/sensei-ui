@@ -10,6 +10,9 @@ FAN_SECS=$4
 PUMP_CYCLES=$5
 PUMP_SECS=$6
 
+SNAP_FREQ=$7
+TIMELAPSE_FREQ=$8
+
 TMP_FILE="/tmp/crontab.tmp"
 
 crontab -l > $TMP_FILE
@@ -25,6 +28,10 @@ sed -e ':a' -e 'N' -e '$!ba' -e "s/\(.*# FANS\n[^\n]*\)\(sleep [0-9]\+\)\([^\n]*
 
 sed -e ':a' -e 'N' -e '$!ba' -e "s/\(.*# PUMP\n0 0-\)\([0-9]\+\)\(\s\+.*\)/\1$PUMP_CYCLES\3/gi" $TMP_FILE -i
 sed -e ':a' -e 'N' -e '$!ba' -e "s/\(.*# PUMP\n[^\n]*\)\(sleep [0-9]\+\)\([^\n]*\)/\1sleep $PUMP_SECS\3/gi" $TMP_FILE -i
+
+
+sed -e ':a' -e 'N' -e '$!ba' -e "s/\(.*# VIDEO\n\*\/\)\([0-9]\+\)\(\s\+.*\)/\1$SNAP_FREQ\3/gi" $TMP_FILE -i
+sed -e ':a' -e 'N' -e '$!ba' -e "s/\(.*# VIDEO\n[^\n]\+\n\*\/\)\([0-9]\+\)\(\s\+.*\)/\1$TIMELAPSE_FREQ\3/gi" $TMP_FILE -i
 
 cat $TMP_FILE | crontab -
 cat $TMP_FILE
