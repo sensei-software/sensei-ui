@@ -13,6 +13,9 @@ PUMP_SECS=$6
 SNAP_FREQ=$7
 TIMELAPSE_FREQ=$8
 
+
+echo "DAY_STARTS=$1 - NIGHT_STARTS=$2 - FAN_FREQ=$3 - FAN_SECS=$4 - PUMP_CYCLES=$5 - PUMP_SECS=$6 - SNAP_FREQ=$7 - TIMELAPSE_FREQ=$8" | ts | tee -a $DIR/../logs/settings_crons.log
+
 TMP_FILE="/tmp/crontab.tmp"
 
 crontab -l > $TMP_FILE

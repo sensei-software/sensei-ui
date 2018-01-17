@@ -11,7 +11,7 @@ $MYSQL_USR= "sensei";
 if(DEBUG)
   $MYSQL_PASS="";
 else
-  $MYSQL_PASS="";
+  $MYSQL_PASS="senseimonitor777";
 
 $SenseiMonitorRefresh = 600;
 $SenseiMonitorLastMinutes ="60&r=60";

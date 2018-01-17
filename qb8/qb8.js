@@ -10,7 +10,13 @@ function updateValues(oneshot){
     success: function(data){
       val=data.split(" ")[0];
       $("#cpuload .value").text(val);
-
+      if(val>5){
+        $("#cpuload .fa").css("color","red");
+      } else if (val>3.5){
+        $("#cpuload .fa").css("color","orange");
+      } else {
+        $("#cpuload .fa").css("color","");
+      }
     }
   });
   $.ajax({
@@ -18,6 +24,11 @@ function updateValues(oneshot){
     success: function(data){
       val=data;
       $("#date .value").text(val);
+      $("#date .fa").css("color","#00A0E3");
+      window.setTimeout(function(){
+        $("#date .fa").css("color","");
+	}, 1000);
+
 
     }
   });
@@ -77,6 +88,18 @@ function updateValues(oneshot){
       val=parseFloat(re.exec(data)[1]).toFixed(1);
       console.log('TEMPERATURE=' + val);
       $("#temperature .ext_value span").text(val);
+
+      re = /System>http\s*ACTIVE_CLIENTS\s*.\s*([\d.]+?)\s+/gi
+      val=Math.round(re.exec(data)[1]);
+      console.log('ACTIVE_CLIENTS=' + val);
+      $("#users .value").text(val);
+      if(val>3){
+        $("#users .fa").css("color","red");
+      } else if (val>2){
+        $("#users .fa").css("color","orange");
+      } else {
+        $("#users .fa").css("color","");
+      }
 
       // ICONS
       re = /Icons>L4\s*LED_STATUS\s*.\s*([\d.]+?)\s+/gi

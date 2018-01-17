@@ -1,6 +1,11 @@
 $(function(){
   $("#snap img").on('load', function() {
     $("#snap img").attr("data-loading","false");
+    console.log('snap img load');
+  })
+  $("#snap img").on('error', function() {
+    $("#snap img").attr("data-loading","false");
+    console.log('snap img error');
   })
   $("#snap img").attr("data-loading","false");
   updateSnap();
@@ -16,5 +21,5 @@ function updateSnap(){
       $("#snap img").attr("src", "video/snap00001.jpg?"+d.getTime());
     }
   }
-  window.setTimeout(updateSnap,4000);
+  window.setTimeout(updateSnap,3000);
 };

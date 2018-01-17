@@ -1,6 +1,6 @@
 var srvUrl="/api/srv-graph.php"
 srvUrl+=location.search;
-// var colors = new Array("#fa0","#a0a","#00f","#444","#0f0","#f00","#0fa");
+//var colors = new Array('rgba(0,160,227,0.5)','rgba(200,100,200,0.5)');
 // "?filter=&single=1&fill=0&last=60&type=spline&unit=s&r=60";
 //var srvUrl="srv/data.json";
 var updInterval=par("r");
@@ -18,6 +18,7 @@ function par(name) {
 
 function initChart(){
   Highcharts.setOptions({
+	//colors: colors,
       global: {
           useUTC: false
       }

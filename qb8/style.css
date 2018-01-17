@@ -45,12 +45,17 @@ img.logo{
   /*display: inline-block;*/
 }
 .info{
-  width: 50%;
+  width: auto;
+  display: inline-block;
   float: left;
   text-align: center;
   margin-top: 1em;
   color: #999;
-  font-size: 1.5em;
+  font-size: 1.2em;
+  margin-left: 0.8em;
+}
+.info .fa{
+  color: #999;
 }
 #content{
   float: left;
@@ -415,6 +420,7 @@ a.close{
   width: 100%;
 }
 
+
 @media only screen and (max-width: 799px) {
 	#content{
 		/*height: 480px;*/
@@ -521,17 +527,19 @@ a.close{
 	}
 	.menu_btn{
 		line-height: 2.5em;
-		font-size: 2.5em;
+		font-size: 2.2em;
 		width: 3.5em;
-		height: 3.5em;
+		height: 2.5em;
 		text-align: center;
 	}
-	.menu_btn a{
-
+  .menu_btn a{
+    line-height: 20px;
+ }
+	.menu_btn span{
+      display: none;;
 	}
 	.menu_btn a i{
-		margin-left: 0.3em;
-
+		margin-left: 0.05em;
 	}
 	.info{
 		width: 100%;

@@ -13,6 +13,10 @@ MOISTURE_NIGHT=$6
 TEMPERATURE_DAY=$7
 TEMPERATURE_NIGHT=$8
 
+echo "LIGHT_DAY=$1 - LIGHT_NIGHT=$2 - HUMIDITY_DAY=$3 - HUMIDITY_NIGHT=$4 - MOISTURE_DAY=$5 - MOISTURE_NIGHT=$6 - TEMPERATURE_DAY=$7 - TEMPERATURE_NIGHT=$8" | ts | tee -a $DIR/../logs/settings_rules.log
+
+
+
 sed "s/\(THRESHOLD=\"\)\([0-9]\+\)\"/\1$LIGHT_DAY\"/gi" /home/sensei/sensei/sensei-server/conf/rules/check-light.day.* -i
 
 sed "s/\(THRESHOLD=\"\)\([0-9]\+\)\"/\1$LIGHT_NIGHT\"/gi" /home/sensei/sensei/sensei-server/conf/rules/check-light.night.* -i
