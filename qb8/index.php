@@ -140,7 +140,7 @@
 				<div style="clear: both;"></div>
 				<div id="snap">
 					<img src="#"  onclick="$(this).parent().toggleClass('visible')">
-					<div id="takesnap"><a href="/api/srv-sys-cmd.php?cmd=/home/sensei/video/usb/snapshot.sh" target="hidden">
+					<div id="takesnap"><a href="/api/srv-sys-cmd.php?cmd=/home/sensei/video/snapshot.sh" target="hidden">
 						<i class="fa fa-camera" aria-hidden="true"></i>
 						</a></div>
 				</div>

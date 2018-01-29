@@ -4,6 +4,22 @@ $(function(){
   initGraphs();
 });
 
+
+function parseValue(data, re){
+  /*
+  var reflags = pattern.replace(/.*\/([gimy]*)$/, '$1');
+  var repattern = pattern.replace(new RegExp('^/(.*?)/'+reflags+'$'), '$1');
+  var re = new RegExp(repattern, reflags);
+  */
+  var matches=re.exec(data);
+  if(matches){
+    val=parseFloat(matches[1]).toFixed(1);
+  } else {
+    val = "";
+  }
+  return val;
+}
+
 function updateValues(oneshot){
   $.ajax({
     url: '/api/srv-alias-cmd.php?alias=CpuLoad',
@@ -33,7 +49,7 @@ function updateValues(oneshot){
     }
   });
   $.ajax({
-    url: '/api/srv-sys-cmd.php?cmd=tail -n 20 /home/sensei/sensei/sensei-server/logs/sensei.log',
+    url: '/api/srv-sys-cmd.php?cmd=tail -n 20 /home/sensei/sensei-server/logs/sensei.log',
     success: function(data){
       val=data.replace(/\n/g,"<br>",true);
       $("#logline").html(val);
@@ -42,7 +58,7 @@ function updateValues(oneshot){
   });
 
   $.ajax({
-    url: '/api/srv-sys-cmd.php?cmd=/home/sensei/sensei/sensei-server/batch/last_relon.sh 5',
+    url: '/api/srv-sys-cmd.php?cmd=/home/sensei/sensei-server/batch/last_relon.sh 5',
     success: function(data){
       val=data.replace(/\n/g,"<br>",true);
       $("#moisture .ext_value span").html(val);
@@ -59,11 +75,6 @@ function updateValues(oneshot){
       console.log('LIGHT=' + val);
       $("#light .value span").text(val);
 
-      re = /Weather>apixu\s*IS_DAY\s*.\s*([\d.]+?)\s+/gi
-      val=parseFloat(re.exec(data)[1]) ? "day" : "night";
-      console.log('IS_DAY=' + val);
-      $("#light .ext_value span").text(val);
-
       re = /Sensors>HL01\s*MOISTURE\s*.\s*([\d.]+?)\s+/gi
       val=parseFloat(re.exec(data)[1]).toFixed(1);
       console.log('MOISTURE=' + val);
@@ -74,23 +85,30 @@ function updateValues(oneshot){
       console.log('HUMIDITY=' + val);
       $("#humidity .value span").text(val);
 
-      re = /Weather>apixu\s*HUMIDITY\s*.\s*([\d.]+?)\s+/gi
-      val=parseFloat(re.exec(data)[1]).toFixed(1);
-      console.log('HUMIDITY=' + val);
-      $("#humidity .ext_value span").text(val);
-
       re = /Sensors>DHT11\s*TEMPERATURE\s*.\s*([\d.]+?)\s+/gi
       val=parseFloat(re.exec(data)[1]).toFixed(1);
       console.log('TEMPERATURE=' + val);
       $("#temperature .value span").text(val);
 
-      re = /Weather>apixu\s*TEMPERATURE\s*.\s*([\d.]+?)\s+/gi
-      val=parseFloat(re.exec(data)[1]).toFixed(1);
+      // Weather
+
+      val = parseValue(data, new RegExp(/Weather>apixu\s*IS_DAY\s*.\s*([\d.]+?)\s+/gi));
+      val = val ? "day" : "night";
+      console.log('IS_DAY=' + val);
+      $("#light .ext_value span").text(val);
+
+      val = parseValue(data, new RegExp(/Weather>apixu\s*HUMIDITY\s*.\s*([\d.]+?)\s+/gi));
+      console.log('HUMIDITY=' + val);
+      $("#humidity .ext_value span").text(val);
+
+      val = parseValue(data, new RegExp(/Weather>apixu\s*TEMPERATURE\s*.\s*([\d.]+?)\s+/gi));
       console.log('TEMPERATURE=' + val);
       $("#temperature .ext_value span").text(val);
 
-      re = /System>http\s*ACTIVE_CLIENTS\s*.\s*([\d.]+?)\s+/gi
-      val=Math.round(re.exec(data)[1]);
+      // System
+
+      val = parseValue(data, new RegExp(/System>http\s*ACTIVE_CLIENTS\s*.\s*([\d.]+?)\s+/gi));
+      val=Math.round(val);
       console.log('ACTIVE_CLIENTS=' + val);
       $("#users .value").text(val);
       if(val>3){
